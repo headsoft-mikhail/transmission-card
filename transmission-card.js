@@ -714,9 +714,11 @@ class TransmissionCard extends LitElement {
     .progressbar-icon {
       position: relative;
       vertical-align: middle;
-      left: -2px;
+      left: -4px;
       transform: translateY(-50);
-      font-size: 20px;
+      font-size: 16px;
+      margin-left: 0.1em;
+      margin-right: 0.1em;
       color:green;
       z-index: 2;
     }
