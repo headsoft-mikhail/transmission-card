@@ -391,7 +391,7 @@ class TransmissionCard extends LitElement {
 
     return html`
       <div class="progressbar">
-        ${icon ? html`<ha-icon icon="${icon}"></ha-icon>` : ''}
+        ${icon ? html`<ha-icon icon="${icon}" class="progressbar-icon"></ha-icon>` : ''}
         <div class="${torrent.status} progressin" style="width:${torrent.percent}%"></div>
         <div class="name">${torrent.name}</div>
         <div class="percent">${torrent.percent}%</div>
@@ -710,6 +710,15 @@ class TransmissionCard extends LitElement {
       margin-right: 0.7em;
       color: var(--text-light-primary-color, var(--primary-text-color));
       line-height: 1.4em;
+    }
+    .progressbar-icon {
+      position: relative;
+      top: 50%;
+      left: 4px;
+      transform: translateY(-50);
+      font-size: 24px;
+      color:green;
+      z-index: 2;
     }
     .downloading {
       background-color: var(--accent-color);
