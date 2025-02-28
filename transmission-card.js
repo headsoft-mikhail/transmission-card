@@ -475,7 +475,7 @@ class TransmissionCard extends LitElement {
       </ha-icon-button>`
   }
 
-  renderSatus() {
+  renderStatus() {
     if (this.config.hide_status) {
       return html``;
     }
