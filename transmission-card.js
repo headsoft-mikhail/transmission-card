@@ -335,8 +335,6 @@ class TransmissionCard extends LitElement {
     `
       <div id="title1">
         ${this.renderStatus(gattributes)}
-      </div>
-      <div id="title1">
         ${this.renderDownloadSpeed(gattributes)}
         ${this.renderUploadSpeed(gattributes)}
         ${this.renderTurtleButton()}
