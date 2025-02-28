@@ -282,7 +282,6 @@ class TransmissionCard extends LitElement {
       'hide_upload_speed': false,
       'hide_download_speed': false,
       'hide_status': false,
-      'hide_compact_icons': false,
     }
 
     this.config = {
@@ -336,6 +335,8 @@ class TransmissionCard extends LitElement {
     `
       <div id="title1">
         ${this.renderStatus(gattributes)}
+      </div>
+      <div id="title1">
         ${this.renderDownloadSpeed(gattributes)}
         ${this.renderUploadSpeed(gattributes)}
         ${this.renderTurtleButton()}
@@ -387,11 +388,8 @@ class TransmissionCard extends LitElement {
   }
 
   renderTorrent(torrent) {
-    let icon = (!this.config.hide_compact_icons && torrent.status === 'downloading')? 'mdi:menu-right': '';
-
     return html`
       <div class="progressbar">
-        ${icon ? html`<ha-icon icon="${icon}" class="progressbar-icon"></ha-icon>` : ''}
         <div class="${torrent.status} progressin" style="width:${torrent.percent}%"></div>
         <div class="name">${torrent.name}</div>
         <div class="percent">${torrent.percent}%</div>
@@ -710,14 +708,6 @@ class TransmissionCard extends LitElement {
       margin-right: 0.8em;
       color: var(--text-light-primary-color, var(--primary-text-color));
       line-height: 1.4em;
-    }
-    .progressbar-icon {
-      position: absolute;
-      vertical-align: middle;
-      top: -0.15em;
-      left: -0.4em;
-      color:green;
-      z-index: 2;
     }
     .downloading {
       background-color: var(--accent-color);

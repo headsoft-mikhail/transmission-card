@@ -50,7 +50,6 @@ resources:
 | hide_delete_torrent      | boolean      | optional     | false                   | hide delete torrent button           |
 | hide_delete_torrent_full | boolean      | optional     | false                   | hide delete torrent with data button |
 | hide_torrent_list        | boolean      | optional     | false                   | hide torrent list |
-| hide_compact_icons       | boolean      | optional     | false                   | hide icon on downloading torrens in compact display_mode |
 | default_sort             | string       | optional     | `name`                  | sort type to display torrents at start |
 | hide_sort                | boolean      | optional     | true                    | hide sort selector |
 | default_order            | string       | optional     | `ascending`             | sort order to display torrents at start |
