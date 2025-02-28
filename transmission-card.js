@@ -696,28 +696,26 @@ class TransmissionCard extends LitElement {
       position: absolute;
     }
     .name {
-      margin-left: 0.9em;
+      margin-left: 0.8em;
       width: calc(100% - 60px);
       overflow: hidden;
-      z-index: 3;
+      z-index: 2;
       color: var(--text-light-primary-color, var(--primary-text-color));
       line-height: 1.4em;
     }
     .percent {
       vertical-align: middle;
-      z-index: 3;
+      z-index: 2;
       margin-left: 1.7em;
-      margin-right: 0.9em;
+      margin-right: 0.8em;
       color: var(--text-light-primary-color, var(--primary-text-color));
       line-height: 1.4em;
     }
     .progressbar-icon {
       position: absolute;
       vertical-align: middle;
-      top: -2px
-      left: -6px;
-      transform: translateY(-50);
-      font-size: 16px;
+      top: -0.1em;
+      left: -0.3em;
       color:green;
       z-index: 2;
     }
