@@ -403,20 +403,6 @@ class TransmissionCard extends LitElement {
     `;
   }
 
-  renderSatus() {
-    if (this.config.hide_status) {
-      return html``;
-    }
-
-    const status = gattributes.status;
-
-    return html`
-      <div class="status titleitem c-${status.replace('/', '')}" @click="${this._show_status}">
-        <p>${translations[this.hass.config.language]?.sensor_state[status] || translations['en'].sensor_state[status] || status}</p>
-      </div>
-    `;
-  }
-
   renderTorrentFull(torrent) {
     return html`
     <div class="torrent">
@@ -494,28 +480,11 @@ class TransmissionCard extends LitElement {
       return html``;
     }
 
-    return html`
-      <div class="status titleitem c-${gattributes.status.replace('/','')}" @click="${this._show_status}">
-        <p>${gattributes.status}<p>
-      </div>
-    `;
-  }
-
-  renderSatus() {
-    if (this.config.hide_status) {
-      return html``;
-    }
-
-    const language = this.hass.config.language || 'en'; // По умолчанию 'en'
-    
     const status = gattributes.status;
-  
-    // Переводим статус с использованием файла перевода
-    const translatedStatus = translations[language]?.[status] || translations['en'][status] || status;
-  
+
     return html`
       <div class="status titleitem c-${status.replace('/', '')}" @click="${this._show_status}">
-        <p>${translatedStatus}</p>
+        <p>${translations[this.hass.config.language]?.sensor_state[status] || translations['en'].sensor_state[status] || status}</p>
       </div>
     `;
   }
