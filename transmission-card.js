@@ -4,6 +4,25 @@ const LitElement = Object.getPrototypeOf(
 const html = LitElement.prototype.html;
 const css = LitElement.prototype.css;
 
+const translations = {
+  "en": {
+    "sensor_state": {
+      "idle": "Idle",
+      "up_down": "Uploading/Downloading",
+      "seeding": "Seeding",
+      "downloading": "Downloading"
+    }
+  },
+  "ru": {
+    "sensor_state": {
+      "idle": "Ожидание",
+      "up_down": "Загрузка/Раздача",
+      "seeding": "Раздача",
+      "downloading": "Загрузка"
+    }
+  }
+}
+
 function hasConfigOrEntityChanged(element, changedProps) {
   if (changedProps.has("config")) {
     return true;
@@ -260,6 +279,10 @@ class TransmissionCard extends LitElement {
       'default_order': 'ascending',
       'hide_limit': true,
       'default_limit': 'all',
+      'hide_upload_speed': false,
+      'hide_download_speed': false,
+      'hide_status': false,
+      'hide_compact_icons': false,
     }
 
     this.config = {
@@ -312,17 +335,9 @@ class TransmissionCard extends LitElement {
     return html
     `
       <div id="title1">
-        <div class="status titleitem c-${gattributes.status.replace('/','')}" @click="${this._show_status}">
-          <p>${gattributes.status}<p>
-        </div>
-        <div class="titleitem" @click="${this._show_download_speed}">
-          <ha-icon icon="mdi:download" class="down down-color"></ha-icon>
-          <span>${gattributes.down_speed} ${gattributes.down_unit}</span>
-        </div>
-        <div class="titleitem" @click="${this._show_upload_speed}">
-          <ha-icon icon="mdi:upload" class="up up-color"></ha-icon>
-          <span>${gattributes.up_speed} ${gattributes.up_unit}</span>
-        </div>
+        ${this.renderStatus()}
+        ${this.renderDownloadSpeed()}
+        ${this.renderUploadSpeed()}
         ${this.renderTurtleButton()}
         ${this.renderStartStopButton()}
         ${this.renderTypeSelect()}
@@ -372,13 +387,32 @@ class TransmissionCard extends LitElement {
   }
 
   renderTorrent(torrent) {
-    return html
-    `
+    let icon = (!this.config.hide_compact_icons && torrent.status === 'downloading')? 'mdi:arrow-down-bold';
+    let language = this.hass.config.language || 'en';
+    let status = gattributes.status;
+    let translatedStatus = translations[language]?.[status] || translations['en'][status] || status;
+
+    return html`
       <div class="progressbar">
-          <div class="${torrent.status} progressin" style="width:${torrent.percent}%">
-          </div>
-          <div class="name">${torrent.name}</div>
+        ${icon ? html`<ha-icon icon="${icon}"></ha-icon>` : ''}
+        
+        <div class="${torrent.status} progressin" style="width:${torrent.percent}%"></div>
+        <div class="name">${torrent.name}</div>
         <div class="percent">${torrent.percent}%</div>
+      </div>
+    `;
+  }
+
+  renderSatus() {
+    if (this.config.hide_status) {
+      return html``;
+    }
+
+    const status = gattributes.status;
+
+    return html`
+      <div class="status titleitem c-${status.replace('/', '')}" @click="${this._show_status}">
+        <p>${translations[this.hass.config.language]?.sensor_state[status] || translations['en'].sensor_state[status] || status}</p>
       </div>
     `;
   }
@@ -453,6 +487,63 @@ class TransmissionCard extends LitElement {
             icon="${icon}">
           </ha-icon>
       </ha-icon-button>`
+  }
+
+  renderSatus() {
+    if (this.config.hide_status) {
+      return html``;
+    }
+
+    return html`
+      <div class="status titleitem c-${gattributes.status.replace('/','')}" @click="${this._show_status}">
+        <p>${gattributes.status}<p>
+      </div>
+    `;
+  }
+
+  renderSatus() {
+    if (this.config.hide_status) {
+      return html``;
+    }
+
+    const language = this.hass.config.language || 'en'; // По умолчанию 'en'
+    
+    const status = gattributes.status;
+  
+    // Переводим статус с использованием файла перевода
+    const translatedStatus = translations[language]?.[status] || translations['en'][status] || status;
+  
+    return html`
+      <div class="status titleitem c-${status.replace('/', '')}" @click="${this._show_status}">
+        <p>${translatedStatus}</p>
+      </div>
+    `;
+  }
+
+  renderDownloadSpeed() {
+    if (this.config.hide_download_speed) {
+      return html``;
+    }
+
+    return html`
+      <div class="titleitem" @click="${this._show_download_speed}">
+        <ha-icon icon="mdi:download" class="down down-color"></ha-icon>
+        <span>${gattributes.down_speed} ${gattributes.down_unit}</span>
+      </div>
+    `;
+  }
+
+  renderUploadSpeed() {
+    if (this.config.hide_upload_speed) {
+      return html``;
+    }
+
+    return html`
+      <div class="titleitem" @click="${this._show_upload_speed}">
+        <ha-icon icon="mdi:upload" class="up up-color"></ha-icon>
+        <span>${gattributes.up_speed} ${gattributes.up_unit}</span>
+      </div>
+    `;
   }
 
   renderTurtleButton() {

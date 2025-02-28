@@ -42,10 +42,15 @@ resources:
 | sensor_entity_id         | string       | optional     | `transmission`          | name of the sensor. Useful when using different entity name either deliberately or by e.g. HA generating localized entity name/id |
 | hide_header              | boolean      | optional     | false                   | hide header text at the top of card  |
 | header_text              | string       | optional     | `Transmission`          | header text at the top of card       |
+| hide_status              | boolean      | optional     | false                   | hide status selector |
+| hide_download_speed      | boolean      | optional     | false                   | hide download speed |
+| hide_upload_speed        | boolean      | optional     | false                   | hide upload speed |
+| hide_limit               | boolean      | optional     | true                    | hide limit selector |
 | hide_add_torrent         | boolean      | optional     | false                   | hide add torrent input               |
 | hide_delete_torrent      | boolean      | optional     | false                   | hide delete torrent button           |
 | hide_delete_torrent_full | boolean      | optional     | false                   | hide delete torrent with data button |
 | hide_torrent_list        | boolean      | optional     | false                   | hide torrent list |
+| hide_compact_icons       | boolean      | optional     | false                   | hide icon on downloading torrens in compact display_mode |
 | default_sort             | string       | optional     | `name`                  | sort type to display torrents at start |
 | hide_sort                | boolean      | optional     | true                    | hide sort selector |
 | default_order            | string       | optional     | `ascending`             | sort order to display torrents at start |
