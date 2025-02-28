@@ -335,9 +335,9 @@ class TransmissionCard extends LitElement {
     return html
     `
       <div id="title1">
-        ${this.renderStatus()}
-        ${this.renderDownloadSpeed()}
-        ${this.renderUploadSpeed()}
+        ${this.renderStatus(gattributes)}
+        ${this.renderDownloadSpeed(gattributes)}
+        ${this.renderUploadSpeed(gattributes)}
         ${this.renderTurtleButton()}
         ${this.renderStartStopButton()}
         ${this.renderTypeSelect()}
@@ -475,7 +475,7 @@ class TransmissionCard extends LitElement {
       </ha-icon-button>`
   }
 
-  renderStatus() {
+  renderStatus(gattributes) {
     if (this.config.hide_status) {
       return html``;
     }
@@ -489,7 +489,7 @@ class TransmissionCard extends LitElement {
     `;
   }
 
-  renderDownloadSpeed() {
+  renderDownloadSpeed(gattributes) {
     if (this.config.hide_download_speed) {
       return html``;
     }
@@ -502,7 +502,7 @@ class TransmissionCard extends LitElement {
     `;
   }
 
-  renderUploadSpeed() {
+  renderUploadSpeed(gattributes) {
     if (this.config.hide_upload_speed) {
       return html``;
     }
