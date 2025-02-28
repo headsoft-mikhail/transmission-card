@@ -387,7 +387,7 @@ class TransmissionCard extends LitElement {
   }
 
   renderTorrent(torrent) {
-    let icon = (!this.config.hide_compact_icons && torrent.status === 'downloading')? 'mdi:arrow-down-bold': '';
+    let icon = (!this.config.hide_compact_icons && torrent.status === 'downloading')? 'mdi:menu-right': '';
 
     return html`
       <div class="progressbar">
@@ -696,29 +696,28 @@ class TransmissionCard extends LitElement {
       position: absolute;
     }
     .name {
-      margin-left: 0.7em;
+      margin-left: 0.9em;
       width: calc(100% - 60px);
       overflow: hidden;
-      z-index: 2;
+      z-index: 3;
       color: var(--text-light-primary-color, var(--primary-text-color));
       line-height: 1.4em;
     }
     .percent {
       vertical-align: middle;
-      z-index: 2;
+      z-index: 3;
       margin-left: 1.7em;
-      margin-right: 0.7em;
+      margin-right: 0.9em;
       color: var(--text-light-primary-color, var(--primary-text-color));
       line-height: 1.4em;
     }
     .progressbar-icon {
       position: relative;
       vertical-align: middle;
-      left: -4px;
+
+      left: -6px;
       transform: translateY(-50);
       font-size: 16px;
-      margin-left: 0.1em;
-      margin-right: 0.1em;
       color:green;
       z-index: 2;
     }
