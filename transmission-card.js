@@ -388,14 +388,10 @@ class TransmissionCard extends LitElement {
 
   renderTorrent(torrent) {
     let icon = (!this.config.hide_compact_icons && torrent.status === 'downloading')? 'mdi:arrow-down-bold': '';
-    let language = this.hass.config.language || 'en';
-    let status = gattributes.status;
-    let translatedStatus = translations[language]?.[status] || translations['en'][status] || status;
 
     return html`
       <div class="progressbar">
         ${icon ? html`<ha-icon icon="${icon}"></ha-icon>` : ''}
-        
         <div class="${torrent.status} progressin" style="width:${torrent.percent}%"></div>
         <div class="name">${torrent.name}</div>
         <div class="percent">${torrent.percent}%</div>
