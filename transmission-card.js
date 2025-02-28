@@ -387,7 +387,7 @@ class TransmissionCard extends LitElement {
   }
 
   renderTorrent(torrent) {
-    let icon = (!this.config.hide_compact_icons && torrent.status === 'downloading')? 'mdi:arrow-down-bold';
+    let icon = (!this.config.hide_compact_icons && torrent.status === 'downloading')? 'mdi:arrow-down-bold': '';
     let language = this.hass.config.language || 'en';
     let status = gattributes.status;
     let translatedStatus = translations[language]?.[status] || translations['en'][status] || status;
