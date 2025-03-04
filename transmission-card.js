@@ -769,7 +769,7 @@ class TransmissionCard extends LitElement {
     .status-newline {
       width: 100%;
       text-align: left;
-      margin-bottom: 0.2em;
+      margin-bottom: -2.5em;
       margin-left: 1.4em;
     }
     .turtle_off {
