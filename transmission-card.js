@@ -15,7 +15,7 @@ const translations = {
   },
   "ru": {
     "sensor_state": {
-      "idle": "Ожидание",
+      "idle": "Бездействие",
       "up_down": "Загрузка/Раздача",
       "seeding": "Раздача",
       "downloading": "Загрузка"
@@ -282,6 +282,7 @@ class TransmissionCard extends LitElement {
       'hide_upload_speed': false,
       'hide_download_speed': false,
       'hide_status': false,
+      'force_status_newline': false,
     }
 
     this.config = {
@@ -473,9 +474,11 @@ class TransmissionCard extends LitElement {
     }
 
     const status = gattributes.status;
+    const statusClass = this.config.force_status_newline ? "status-newline": "";
+
 
     return html`
-      <div class="status titleitem c-${status.replace('/', '')}" @click="${this._show_status}">
+      <div class="status titleitem c-${status.replace('/', '')} ${statusClass}" @click="${this._show_status}">
         <p>${translations[this.hass.config.language]?.sensor_state[status] || translations['en'].sensor_state[status] || status}</p>
       </div>
     `;
@@ -738,7 +741,7 @@ class TransmissionCard extends LitElement {
 
     #title {
       position: relative;
-      display: inline;
+      display: inline-block;
       width: 100%;
     }
     #title1 {
@@ -762,6 +765,10 @@ class TransmissionCard extends LitElement {
     }
     .status {
       font-size: 1em;
+    }
+    .status-newline {
+      width: 100%;
+      text-align: center;
     }
     .turtle_off {
       color: var(--light-primary-color);
