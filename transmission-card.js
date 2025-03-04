@@ -768,7 +768,9 @@ class TransmissionCard extends LitElement {
     }
     .status-newline {
       width: 100%;
-      text-align: center;
+      text-align: left;
+      margin-bottom: 0.2em;
+      margin-left: 1.4em;
     }
     .turtle_off {
       color: var(--light-primary-color);
