@@ -42,11 +42,10 @@ resources:
 | sensor_entity_id         | string       | optional     | `transmission`          | name of the sensor. Useful when using different entity name either deliberately or by e.g. HA generating localized entity name/id |
 | hide_header              | boolean      | optional     | false                   | hide header text at the top of card  |
 | header_text              | string       | optional     | `Transmission`          | header text at the top of card       |
-| hide_status              | boolean      | optional     | false                   | hide status label |
 | force_status_newline     | boolean      | optional     | false                   | display the status on a separate line to avoid flickering due to different text lengths |
+| hide_status              | boolean      | optional     | false                   | hide status label |
 | hide_download_speed      | boolean      | optional     | false                   | hide download speed |
 | hide_upload_speed        | boolean      | optional     | false                   | hide upload speed |
-| hide_limit               | boolean      | optional     | true                    | hide limit selector |
 | hide_add_torrent         | boolean      | optional     | false                   | hide add torrent input               |
 | hide_delete_torrent      | boolean      | optional     | false                   | hide delete torrent button           |
 | hide_delete_torrent_full | boolean      | optional     | false                   | hide delete torrent with data button |
